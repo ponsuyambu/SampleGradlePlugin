@@ -1,0 +1,14 @@
+apply plugin: 'in.ponshere.sample.gradle.plugin'
+
+demoSetting {
+    message = "Hello"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'SampleGradlePlugin:demoPlugin:1.5-SNAPSHOT'
+    }
+}
