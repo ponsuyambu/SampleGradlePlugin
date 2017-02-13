@@ -9,6 +9,6 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'SampleGradlePlugin:demoPlugin:1.5-SNAPSHOT'
+        classpath 'SampleGradlePlugin:demoPlugin:1.9-SNAPSHOT'
     }
 }
