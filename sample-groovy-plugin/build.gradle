@@ -1,5 +1,5 @@
 group 'SampleGradlePlugin'
-version '1.18-SNAPSHOT'
+version '1.20-SNAPSHOT'
 
 apply plugin: 'groovy'
 apply plugin: 'maven'

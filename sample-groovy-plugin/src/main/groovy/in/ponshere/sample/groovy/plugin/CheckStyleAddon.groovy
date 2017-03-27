@@ -30,7 +30,7 @@ class CheckStyleAddon {
             checkStyleTask.configURL = configFile.toURI().toURL()
             checkStyleTask.addFormatter(new CheckstyleAntTask.Formatter(type: new CheckstyleAntTask.FormatterType(value: 'xml'), tofile: xmlReportFile))
             reformatReport(project, resolveStyleFile(project), xmlReportFile, new File(project.buildDir, "outputs/checkstyle-reports.html"))
-            checkStyleTask.failOnViolation = false
+            checkStyleTask.failOnViolation = true
 
             sources.findAll { it.exists() }.each {
                 checkStyleTask.addFileset(project.ant.fileset(dir: it))

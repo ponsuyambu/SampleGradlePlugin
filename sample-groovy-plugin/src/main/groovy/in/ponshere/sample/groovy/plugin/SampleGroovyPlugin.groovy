@@ -40,6 +40,7 @@ class SampleGroovyPlugin implements Plugin<Project> {
             }
 
             new CheckStyleAddon().performCheck(project)
+            preBuild.dependsOn checkstyle
         }
     }
 
