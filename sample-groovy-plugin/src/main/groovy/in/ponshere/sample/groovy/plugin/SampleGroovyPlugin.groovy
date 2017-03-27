@@ -1,7 +1,10 @@
 package in.ponshere.sample.groovy.plugin
 
 import org.gradle.api.Plugin
-import org.gradle.api.Project;
+import org.gradle.api.Project
+
+import java.util.jar.JarEntry
+import java.util.jar.JarFile;
 
 class SampleGroovyPlugin implements Plugin<Project> {
 
@@ -11,7 +14,7 @@ class SampleGroovyPlugin implements Plugin<Project> {
             apply plugin: 'com.android.application'
             android {
                 compileSdkVersion 25
-                buildToolsVersion "25.0.1"
+                buildToolsVersion VersionSettings.BUILD_TOOLS_VERSION
                 defaultConfig {
                     applicationId "in.ponshere.progaurdforlibrary"
                     minSdkVersion 14
@@ -35,6 +38,29 @@ class SampleGroovyPlugin implements Plugin<Project> {
                     }
                 }
             }
+
+            new CheckStyleAddon().performCheck(project)
         }
     }
+
+
+//    static List<File> getAndroidSources(Project project) {
+//        project.android.sourceSets.inject([]) {
+//            dirs, sourceSet -> dirs + sourceSet.java.srcDirs
+//        }
+//    }
+
+//    static String getResource(Project project, String resourcePath) {
+//        Set<File> files = new HashSet<>()
+//        files += project.buildscript.configurations.classpath.resolve()
+//        files += project.rootProject.buildscript.configurations.classpath.resolve()
+//        File file = files.find { new JarFile(it).getJarEntry(resourcePath) }
+//        if (file == null) {
+//            return null
+//        } else {
+//            JarFile jarFile = new JarFile(file)
+//            JarEntry jarEntry = jarFile.getJarEntry(resourcePath)
+//            return jarFile.getInputStream(jarEntry).text
+//        }
+//    }
 }

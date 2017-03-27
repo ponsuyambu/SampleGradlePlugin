@@ -1,3 +1,4 @@
+include ':myapplication'
 rootProject.name = 'demoPlugin'
 include(":consumer")
 include 'sample-groovy-plugin'
