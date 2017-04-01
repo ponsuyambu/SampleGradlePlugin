@@ -17,6 +17,8 @@ class BasePlugin implements Plugin<Project>{
     def mProductFlavorsConfigBlock;
     def mAndroidAppConfigBlock;
     def mDefaultConfigBlock;
+    def mRepoConfigBlock;
+    def mDependenciesConfigBlock;
 
     protected void configure(Project project){
 
@@ -58,9 +60,28 @@ class BasePlugin implements Plugin<Project>{
                 }
             }
 
+            mRepoConfigBlock = {
+                repositories {
+                    jcenter()
+                }
+            }
+
+            mDependenciesConfigBlock = {
+                android {
+                    dependencies {
+                        compile fileTree(dir: 'libs', include: ['*.jar'])
+                        testCompile 'junit:junit:4.12'
+                        compile 'com.android.support:appcompat-v7:25.1.1'
+                    }
+                }
+            }
+
+            mRepoConfigBlock();
+            mDependenciesConfigBlock();
+
             configure(project);
             new CheckStyleAddon().performCheck(project)
-            preBuild.dependsOn checkstyle
+            //preBuild.dependsOn checkstyle
         }
     }
 

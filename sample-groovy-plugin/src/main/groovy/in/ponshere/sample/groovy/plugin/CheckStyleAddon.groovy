@@ -12,6 +12,11 @@ import java.util.jar.JarFile
 class CheckStyleAddon {
 
     protected void performCheck(Project project){
+        if(!new File(project.buildDir, "outputs/checkstyle-reports.xml").exists()){
+            File f = new File(project.buildDir, "outputs/checkstyle-reports.xml");
+            f.parentFile.mkdirs()
+            f.createNewFile();
+        }
         performCheck(project,
                 getAndroidSources(project),
                 resolveConfigFile(project),
