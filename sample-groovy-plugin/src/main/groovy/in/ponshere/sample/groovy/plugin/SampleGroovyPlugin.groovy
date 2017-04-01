@@ -3,46 +3,44 @@ package in.ponshere.sample.groovy.plugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-import java.util.jar.JarEntry
-import java.util.jar.JarFile;
+class SampleGroovyPlugin extends BasePlugin implements Plugin<Project> {
 
-class SampleGroovyPlugin implements Plugin<Project> {
+    public SampleGroovyPlugin() {
+        super("com.android.application")
+    }
+
+    @Override
+    protected void configure(Project project) {
+        super.configure(project)
+        mAndroidAppConfigBlock.call();
+        mDefaultConfigBlock();
+        mProductFlavorsConfigBlock.call();
+
+
+
+    }
 
     @Override
     void apply(Project project) {
-        project.configure(project) {
-            apply plugin: 'com.android.application'
-            android {
-                compileSdkVersion 25
-                buildToolsVersion VersionSettings.BUILD_TOOLS_VERSION
-                defaultConfig {
-                    applicationId "in.ponshere.progaurdforlibrary"
-                    minSdkVersion 14
-                    targetSdkVersion 25
-                    versionCode 1
-                    versionName "1.0"
-                    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-                }
-                buildTypes {
-                    release {
-                        minifyEnabled true
-                        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-                    }
-                }
-                productFlavors {
-                    demo {
-
-                    }
-                    full {
-
-                    }
-                }
-            }
-
-            new CheckStyleAddon().performCheck(project)
-            preBuild.dependsOn checkstyle
-        }
+        super.apply(project)
     }
+//    @Override
+//    void apply(Project project) {
+//        super.apply(project)
+//        project.configure(project) {
+//
+//
+//
+//
+//
+////            project.extensions.configure(AppExtension.class,android)
+////            project.extensions.add("android",android);
+//
+//
+//
+//            n
+//        }
+//    }
 
 
 //    static List<File> getAndroidSources(Project project) {
