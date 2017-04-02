@@ -12,8 +12,8 @@ class SampleGroovyPlugin extends BasePlugin implements Plugin<Project> {
     @Override
     protected void configure(Project project) {
         super.configure(project)
-        mAndroidAppConfigBlock.call();
+        mAndroidAppConfigBlock();
         mDefaultConfigBlock();
-        mProductFlavorsConfigBlock.call();
+        mProductFlavorsConfigBlock();
     }
 }
